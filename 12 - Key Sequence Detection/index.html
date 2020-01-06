@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+</head>
+<body>
+  <p><em>Please, for the love of all things good, do NOT type 'johnny' in this window...</em></p>
+  </h1>
+<script>
+  let pressed = [];
+  let secret = 'johnny';
+
+  function johnnify() {
+    document.body.style.backgroundSize = '80% auto';
+    document.body.style.backgroundAttachment = 'fixed';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundPosition = 'center center';
+    document.body.style.backgroundImage = "url('https://tenor.com/view/heresjohnny-jacknicholson-shining-gif-5390104.gif')";
+    document.querySelector('p').textContent = '';
+  }
+
+  window.addEventListener('keyup', (e) => {
+    pressed.push(e.key);
+    // create a string only as long as secret code
+    pressed.splice(-secret.length - 1, pressed.length - secret.length);
+    if (pressed.join('').includes(secret)) johnnify();
+  });
+
+</script>
+</body>
+</html>
