@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Shadow</title>
+</head>
+
+<body>
+
+  <div class="hero">
+    <h1 contenteditable>🔥BAZINGA</h1>
+  </div>
+
+  <style>
+    html {
+      color: black;
+      font-family: sans-serif;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+    }
+
+    h1 {
+      text-shadow: 10px 10px 0 rgba(0, 0, 0, 1);
+      font-size: 100px;
+    }
+  </style>
+
+  <script>
+
+    const hero = document.querySelector('.hero');
+    const text = hero.querySelector('h1');
+    const bound = 420;
+
+    function shadow(e) {
+      const width = hero.offsetWidth;
+      const height = hero.offsetHeight;
+      let x = e.offsetX;
+      let y = e.offsetY;
+
+      // normalize values for cursor position 
+      if (this !== e.target) {
+        x += e.target.offsetLeft;
+        y += e.target.offsetTop;
+      }
+
+      // create pixel coordinates based on scale of 100
+      const xBound = Math.round((x / width * bound) - (bound / 2));
+      const yBound = Math.round((y / height * bound) - (bound / 2));
+
+      text.style.textShadow = `
+      ${xBound}px ${yBound}px 0 rgba(255,0,255,0.7),
+      ${xBound * -1}px ${yBound}px 0 rgba(0,255,255,0.7),
+      ${yBound}px ${xBound * -1}px 0 rgba(0,255,0,0.7),
+      ${yBound * -1}px ${xBound}px 0 rgba(0,0,255,0.7)
+    `;
+    }
+
+    hero.addEventListener('mousemove', shadow);
+  </script>
+</body>
+
+</html>
